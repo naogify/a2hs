@@ -1,6 +1,20 @@
 const images = ['fox1', 'fox2', 'fox3', 'fox4'];
 const imgElem = document.querySelector('img');
 
+const buttonInstall = document.querySelector('#add-button-custom');
+buttonInstall.addEventListener('click', async () => {
+  // Hide the app provided install promotion
+  hideInstallPromotion();
+  // Show the install prompt
+  deferredPrompt.prompt();
+  // Wait for the user to respond to the prompt
+  const { outcome } = await deferredPrompt.userChoice;
+  // Optionally, send analytics event with outcome of user choice
+  console.log(`User response to the install prompt: ${outcome}`);
+  // We've used the prompt, and can't use it again, throw it away
+  deferredPrompt = null;
+});
+
 function randomValueFromArray(array) {
   const randomNo = Math.floor(Math.random() * array.length);
   return array[randomNo];
@@ -26,6 +40,8 @@ const addBtn = document.querySelector('.add-button');
 addBtn.style.display = 'none';
 
 window.addEventListener('beforeinstallprompt', (e) => {
+
+  console.log("あああああああああああ");
   // Prevent Chrome 67 and earlier from automatically showing the prompt
   e.preventDefault();
   // Stash the event so it can be triggered later.
