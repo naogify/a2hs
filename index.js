@@ -4,7 +4,7 @@ const imgElem = document.querySelector('img');
 const buttonInstall = document.querySelector('#add-button-custom');
 buttonInstall.addEventListener('click', async () => {
   // Hide the app provided install promotion
-  hideInstallPromotion();
+  // hideInstallPromotion();
   // Show the install prompt
   deferredPrompt.prompt();
   // Wait for the user to respond to the prompt
